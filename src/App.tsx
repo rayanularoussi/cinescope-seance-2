@@ -47,16 +47,16 @@ export default function App() {
             {filteredFilms.map((film) => {
               const isFavorite = favorites.includes(film.id);
               return (
-                <article className="film-card" key={film.id}>
+                <article className="film-card" aria-labelledby={`film-title-${film.id}`}  key={film.id}>
                   <img src={film.poster} alt="" />
                   <div className="film-content">
                     <p className={"availability " + (film.available ? "available" : "unavailable")}>
                       {film.available ? "Places disponibles" : "Séance complète"}
                     </p>
-                    <h3>{film.title}</h3>
+                    <h3 id={`film-title-${film.id}`}>{film.title}</h3>
                     <p>{film.genre} · {film.time}</p>
                     <div className="actions">
-                      <div className="booking-trigger fake-button" onClick={() => setSelected(film.title)}>Réserver {film.title}</div>
+                      <button className="booking-trigger button" type="button" aria-labelledby={`film-title-${film.id}`} onClick={() => setSelected(film.title)}>Réserver {film.title}</button>
                       <button type="button" className="favorite" aria-pressed={isFavorite}
                         aria-label={"Favori : " + film.title} onClick={() => toggleFavorite(film.id)}>
                         <span aria-hidden="true">{isFavorite ? "★" : "☆"}</span>
