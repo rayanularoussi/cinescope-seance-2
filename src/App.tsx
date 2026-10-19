@@ -74,18 +74,18 @@ export default function App() {
           <p>Le cinéma ouvre trente minutes avant la première séance.</p>
         </section>
         {selectedFilm && (
-          <div className="backdrop">
+          <div className="backdrop" role="dialog" aria-modal="true" aria-labelledby="dialog-title" >
             <div className="modal">
               <div className="dialog-heading">
                 <h2>Réserver {selected}</h2>
-                <span className="close" onClick={() => setSelected(null)}>×</span>
+                <button className="close" title="Fermer" onClick={() => setSelected(null)}>×</button>
               </div>
               <p>{selectedFilm.genre} · Séance de {selectedFilm.time}</p>
               <p className={"availability " + (selectedFilm.available ? "available" : "unavailable")}>
                 {selectedFilm.available ? "Places disponibles" : "Séance complète"}
               </p>
               <p>Consultez la séance et sa disponibilité avant de revenir au programme.</p>
-              <button className="dialog-action" type="button" onClick={() => setSelected(null)}>Revenir aux films</button>
+              <button className="dialog-action" type="button" role="button" title="Revenir aux films" onClick={() => setSelected(null)}>Revenir aux films</button>
             </div>
           </div>
         )}
